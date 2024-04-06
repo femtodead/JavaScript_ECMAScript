@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="root">
+        <div class="child1">
+            <div class="child3">
+                <div class="child7">
+            
+                </div>
+            </div>
+            <div class="child4">
+            
+            </div>
+        </div>
+        <div class="child2">
+            <div class="child5">
+                <div class="child8">
+            
+                </div>
+            </div>
+            <div class="child6">
+            
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <script>
+// 1) Дан массив const arr = [1, 5, 7, 9] с помощью Math.min и spread оператора, найти минимальное число в массиве, решение задание должно состоять из одной строки
+    const arr = [1, 5, 7, 9];
+
+    console.log(Math.min(...arr));
+// 2) Напишите функцию createCounter, которая создает счетчик и возвращает объект с двумя методами: increment и decrement. Метод increment должен увеличивать значение счетчика на 1, а метод decrement должен уменьшать значение счетчика на 1. Значение счетчика должно быть доступно только через методы объекта, а не напрямую.
+    function createCounter(value) {
+        return {
+            count: value,
+            increment: function(){
+                this.count++;
+            },
+            decrement: function(){
+                this.count--;
+            }
+        }
+    }
+
+
+    const counter1 = createCounter(0);
+    console.log(counter1.count);
+    counter1.increment()
+    counter1.increment()
+    console.log(counter1.count);
+    counter1.decrement()
+    console.log(counter1.count);
+// 3) Напишите рекурсивную функцию findElementByClass, которая принимает корневой элемент дерева DOM и название класса в качестве аргументов и возвращает первый найденный элемент с указанным классом в этом дереве.
+    const root = document.querySelector('.root');
+    function findElementByClass(elem, name) {
+        if (elem.className == name ) {
+                return elem;
+        }
+        
+        if (elem.children.length != 0){
+            console.log(`Защел на ${elem.className}`);
+            return  findElementByClass(elem.children[0], name)
+            
+        }else{
+            console.log(`Защел на ${elem.className}`);
+            return findElementByClass( elem.parentNode.parentNode.children[1], name)
+        }
+
+
+    }
+    const child = findElementByClass(root, "child8");
+    console.log(child);
+    </script>
+</body>
+</html>
